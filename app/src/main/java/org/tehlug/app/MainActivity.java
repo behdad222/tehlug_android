@@ -19,17 +19,12 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         meetingRecycleView = (RecyclerView) findViewById(R.id.meeting_recycle_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         meetingRecycleView.setHasFixedSize(true);
 
-        // use a linear layout manager
         layoutManager = new LinearLayoutManager(this);
         meetingRecycleView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
-        adapter = new MyAdapter();
+        adapter = new RecycleViewAdapter();
         meetingRecycleView.setAdapter(adapter);
     }
 
