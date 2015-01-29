@@ -25,7 +25,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                                                    int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_item_view, parent, false);
+                .inflate(R.layout.meetings_item, parent, false);
 
         ViewHolder vh = new ViewHolder(v);
         return vh;

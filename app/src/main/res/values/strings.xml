@@ -5,5 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="meetings">جلسات</string>
+    <string name="date">تاریخ</string>
+    <string name="body">توضیح</string>
+    <string name="title">موضوع</string>
 
 </resources>
