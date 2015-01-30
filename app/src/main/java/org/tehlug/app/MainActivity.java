@@ -12,11 +12,6 @@ import com.pkmmte.pkrss.PkRSS;
 
 import java.util.List;
 
-import retrofit.Callback;
-import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
 public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.Callback {
     private RecyclerView meetingRecycleView;
     private RecyclerView.LayoutManager layoutManager;
@@ -37,9 +32,6 @@ public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.
         meetingRecycleView.setAdapter(adapter);
 
         PkRSS.with(this).load("http://tehlug.org/rss.php").callback(this).async();
-
-
-        getFromServer();
     }
 
     @Override
@@ -62,24 +54,6 @@ public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void getFromServer() {
-        RestAdapter restAdapter = new RestAdapter.Builder()
-                .setLogLevel(RestAdapter.LogLevel.FULL)
-                .setEndpoint(getString(R.string.domainURL))
-                .build();
-
-        GetMeetingsApi getMeetingsApi = restAdapter.create(GetMeetingsApi.class);
-        getMeetingsApi.getMeetings(
-                getString(R.string.api_key),
-                new Callback<MeetingsResponse>() {
-                    @Override
-                    public void success(MeetingsResponse meetingsResponse, Response response) {}
-
-                    @Override
-                    public void failure(RetrofitError error) {}
-                });
     }
 
     @Override

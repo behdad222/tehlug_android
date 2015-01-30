@@ -31,9 +31,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-
-    }
+    public void onBindViewHolder(ViewHolder holder, int position) {}
 
     @Override
     public int getItemCount() {
