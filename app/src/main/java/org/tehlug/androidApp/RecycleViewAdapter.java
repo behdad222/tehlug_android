@@ -1,6 +1,5 @@
 package org.tehlug.androidApp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -27,16 +25,16 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title;
+        TextView topic;
         TextView date;
-        TextView body;
+        TextView title;
 
         public ViewHolder(View v) {
             super(v);
-            title = (TextView) itemView.findViewById(R.id.title);
+            topic = (TextView) itemView.findViewById(R.id.topic);
             date = (TextView) itemView.findViewById(R.id.date);
-            body = (TextView) itemView.findViewById(R.id.body);
-            // Is this needed or handled automatically by RecyclerView.ViewHolder?
+            title = (TextView) itemView.findViewById(R.id.title);
+
             v.setOnClickListener(this);
         }
 
@@ -44,6 +42,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         public void onClick(View view) {
             Intent intent = new Intent (context, DescriptionActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("id", getPosition());
             context.startActivity(intent);
         }
     }
@@ -55,7 +54,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.meetings_item, parent, false);
 
-
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -63,7 +61,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         RssItem rssItem = rssItems.get(position);
-        holder.body.setText(rssItem.getTopic());
+        holder.topic.setText(rssItem.getTopic());
         holder.date.setText(rssItem.getDate());
         holder.title.setText(rssItem.getTitle());
     }
