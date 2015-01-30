@@ -11,12 +11,16 @@ import android.view.MenuItem;
 import com.pkmmte.pkrss.Article;
 import com.pkmmte.pkrss.PkRSS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.Callback {
     private RecyclerView meetingRecycleView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
+
+
+    private ArrayList<RssItem> rssItems = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,23 +66,15 @@ public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.
 
     @Override
     public void OnLoaded(List<Article> articles) {
-        for (int a=0 ; a<5; a++){
-            try {
-                Log.d("title", articles.get(a).getTitle());
-                //Log.d("Author", articles.get(a).getAuthor());
-                //Log.d("Comments", articles.get(a).getComments());
-                //Log.d("content", articles.get(a).getContent());
-                Log.d("desription", articles.get(a).getDescription());
-                Log.d("tags", String.valueOf(articles.get(a).getTags()));
-                Log.d("source", String.valueOf(articles.get(a).getSource()));
-                Log.d("id", String.valueOf(articles.get(a).getId()));
-                Log.d("extra", String.valueOf(articles.get(a).getExtras()));
-                Log.d("date", String.valueOf(articles.get(a).getDate()));
-                Log.d("image", String.valueOf(articles.get(a).getImage()));
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-;        }
+        for (int item = 0; item < articles.size(); item++) {
+            RssItem rssItem = new RssItem();
+            rssItem.setTitle(articles.get(item).getTitle());
+            rssItem.setDescription(articles.get(item).getDescription());
+            rssItem.setId(articles.get(item).getId());
+            rssItem.setDate(articles.get(item).getDate());
+            rssItem.setSource(articles.get(item).getSource());
+            rssItems.add(rssItem);
+        }
     }
 
     @Override
