@@ -19,7 +19,6 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         }
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public RecycleViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {

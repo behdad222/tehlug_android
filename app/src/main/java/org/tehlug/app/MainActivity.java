@@ -7,6 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import retrofit.Callback;
+import retrofit.RestAdapter;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 
 public class MainActivity extends ActionBarActivity {
     private RecyclerView meetingRecycleView;
@@ -26,8 +31,9 @@ public class MainActivity extends ActionBarActivity {
 
         adapter = new RecycleViewAdapter();
         meetingRecycleView.setAdapter(adapter);
-    }
 
+        getFromServer();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -49,5 +55,27 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void getFromServer() {
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .setEndpoint(getString(R.string.domainURL))
+                .build();
+
+        GetMeetingsApi getMeetingsApi = restAdapter.create(GetMeetingsApi.class);
+        getMeetingsApi.getMeetings(
+                getString(R.string.api_key),
+                new Callback<MeetingsResponse>() {
+                    @Override
+                    public void success(MeetingsResponse meetingsResponse, Response response) {
+
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+
+                    }
+                });
     }
 }
