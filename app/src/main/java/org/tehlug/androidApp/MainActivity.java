@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -60,7 +61,25 @@ public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.
     public void OnPreLoad() {}
 
     @Override
-    public void OnLoaded(List<Article> articles) {}
+    public void OnLoaded(List<Article> articles) {
+        for (int a=0 ; a<5; a++){
+            try {
+                Log.d("title", articles.get(a).getTitle());
+                //Log.d("Author", articles.get(a).getAuthor());
+                //Log.d("Comments", articles.get(a).getComments());
+                //Log.d("content", articles.get(a).getContent());
+                Log.d("desription", articles.get(a).getDescription());
+                Log.d("tags", String.valueOf(articles.get(a).getTags()));
+                Log.d("source", String.valueOf(articles.get(a).getSource()));
+                Log.d("id", String.valueOf(articles.get(a).getId()));
+                Log.d("extra", String.valueOf(articles.get(a).getExtras()));
+                Log.d("date", String.valueOf(articles.get(a).getDate()));
+                Log.d("image", String.valueOf(articles.get(a).getImage()));
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+;        }
+    }
 
     @Override
     public void OnLoadFailed() {}
