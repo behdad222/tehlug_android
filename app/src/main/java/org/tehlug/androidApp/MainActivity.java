@@ -79,11 +79,22 @@ public class MainActivity extends ActionBarActivity {
     void dataSet(List<Article> articles){
         for (int item = 0; item < articles.size(); item++) {
             RssItem rssItem = new RssItem();
+
             rssItem.setTitle(articles.get(item).getTitle());
-            rssItem.setDescription(articles.get(item).getDescription());
+
+            String[] separated = articles.get(item).getDescription().split(":");
+            String date = separated[1];
+            String description = separated[2];
+
+            String[] separatedDate = date.split("\t");
+            rssItem.setDate(separatedDate[0]);
+
+            String[] separatedDescription = description.split("\t");
+            rssItem.setDescription(separatedDescription[0]);
+
             rssItem.setId(articles.get(item).getId());
-            rssItem.setDate(articles.get(item).getDate());
             rssItem.setSource(articles.get(item).getSource());
+
             rssItems.add(rssItem);
         }
 

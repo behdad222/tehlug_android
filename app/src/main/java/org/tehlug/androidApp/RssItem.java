@@ -11,7 +11,7 @@ public class RssItem {
     private String description;
     private Uri source;
     private int id;
-    private long date;
+    private String date;
 
     public String getTitle() {
         return title;
@@ -30,7 +30,7 @@ public class RssItem {
     }
 
     public String getDate() {
-        return String.valueOf(date);
+        return date;
     }
 
     public void setTitle(String title) {
@@ -49,7 +49,7 @@ public class RssItem {
         this.id = id;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
