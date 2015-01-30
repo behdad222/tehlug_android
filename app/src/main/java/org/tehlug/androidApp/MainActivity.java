@@ -1,5 +1,6 @@
 package org.tehlug.androidApp;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,18 +10,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.pkmmte.pkrss.Article;
+import com.pkmmte.pkrss.Callback;
 import com.pkmmte.pkrss.PkRSS;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.Callback {
+public class MainActivity extends ActionBarActivity {
     private RecyclerView meetingRecycleView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
-
-
-    private ArrayList<RssItem> rssItems = new ArrayList<>();
+    private ArrayList<RssItem> rssItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +32,26 @@ public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.
 
         layoutManager = new LinearLayoutManager(this);
         meetingRecycleView.setLayoutManager(layoutManager);
-
-        adapter = new RecycleViewAdapter();
+        rssItems = new ArrayList<>();
+        adapter = new RecycleViewAdapter(rssItems);
         meetingRecycleView.setAdapter(adapter);
 
-        PkRSS.with(this).load("http://tehlug.org/rss.php").callback(this).async();
+        PkRSS.with(this).load("http://tehlug.org/rss.php").callback(new Callback() {
+            @Override
+            public void OnPreLoad() {
+
+            }
+
+            @Override
+            public void OnLoaded(List<Article> articles) {
+                dataSet(articles);
+            }
+
+            @Override
+            public void OnLoadFailed() {
+
+            }
+        }).async();
     }
 
     @Override
@@ -61,11 +76,7 @@ public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void OnPreLoad() {}
-
-    @Override
-    public void OnLoaded(List<Article> articles) {
+    void dataSet(List<Article> articles){
         for (int item = 0; item < articles.size(); item++) {
             RssItem rssItem = new RssItem();
             rssItem.setTitle(articles.get(item).getTitle());
@@ -75,8 +86,12 @@ public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.
             rssItem.setSource(articles.get(item).getSource());
             rssItems.add(rssItem);
         }
-    }
 
-    @Override
-    public void OnLoadFailed() {}
+        MainActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                meetingRecycleView.getAdapter().notifyDataSetChanged();
+            }
+        });
+
+    }
 }

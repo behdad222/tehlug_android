@@ -29,8 +29,8 @@ public class RssItem {
         return id;
     }
 
-    public long getDate() {
-        return date;
+    public String getDate() {
+        return String.valueOf(date);
     }
 
     public void setTitle(String title) {

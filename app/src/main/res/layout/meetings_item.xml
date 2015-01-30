@@ -4,20 +4,21 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_marginRight="5dp"
+    android:layout_marginEnd="5dp"
     card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="5dp"
-    android:layout_margin="7dp">
+    card_view:cardElevation="7dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
+        android:padding="3dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:textSize="20sp"
+            android:textSize="12sp"
             android:textColor="#000"
             android:id="@+id/title"
             android:layout_alignParentTop="true"
@@ -28,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/date"
-            android:textSize="20sp"
+            android:textSize="12sp"
             android:textColor="#666666"
             android:id="@+id/date"
             android:layout_alignParentTop="true"
@@ -39,8 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/body"
-            android:textSize="25sp"
+            android:textSize="12sp"
             android:textColor="#666666"
+            android:padding="3dp"
             android:id="@+id/body"
             android:layout_below="@+id/title"
             android:layout_alignParentRight="true"
