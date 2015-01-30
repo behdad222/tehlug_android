@@ -1,19 +1,23 @@
 package org.tehlug.app;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.pkmmte.pkrss.Article;
+import com.pkmmte.pkrss.PkRSS;
+
+import java.util.List;
 
 import retrofit.Callback;
 import retrofit.RestAdapter;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements com.pkmmte.pkrss.Callback {
     private RecyclerView meetingRecycleView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
@@ -31,6 +35,9 @@ public class MainActivity extends ActionBarActivity {
 
         adapter = new RecycleViewAdapter();
         meetingRecycleView.setAdapter(adapter);
+
+        PkRSS.with(this).load("http://tehlug.org/rss.php").callback(this).async();
+
 
         getFromServer();
     }
@@ -68,14 +75,19 @@ public class MainActivity extends ActionBarActivity {
                 getString(R.string.api_key),
                 new Callback<MeetingsResponse>() {
                     @Override
-                    public void success(MeetingsResponse meetingsResponse, Response response) {
-
-                    }
+                    public void success(MeetingsResponse meetingsResponse, Response response) {}
 
                     @Override
-                    public void failure(RetrofitError error) {
-
-                    }
+                    public void failure(RetrofitError error) {}
                 });
     }
+
+    @Override
+    public void OnPreLoad() {}
+
+    @Override
+    public void OnLoaded(List<Article> articles) {}
+
+    @Override
+    public void OnLoadFailed() {}
 }
