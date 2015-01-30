@@ -33,7 +33,7 @@ public class MainActivity extends ActionBarActivity {
         layoutManager = new LinearLayoutManager(this);
         meetingRecycleView.setLayoutManager(layoutManager);
         rssItems = new ArrayList<>();
-        adapter = new RecycleViewAdapter(rssItems);
+        adapter = new RecycleViewAdapter(rssItems, this);
         meetingRecycleView.setAdapter(adapter);
 
         PkRSS.with(this).load("http://tehlug.org/rss.php").callback(new Callback() {
