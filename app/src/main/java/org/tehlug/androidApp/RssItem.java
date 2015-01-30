@@ -12,6 +12,7 @@ public class RssItem {
     private Uri source;
     private int id;
     private String date;
+    private String topic;
 
     public String getTitle() {
         return title;
@@ -33,6 +34,10 @@ public class RssItem {
         return date;
     }
 
+    public String getTopic() {
+        return topic;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -51,5 +56,9 @@ public class RssItem {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
     }
 }

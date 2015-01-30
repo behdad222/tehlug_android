@@ -82,15 +82,18 @@ public class MainActivity extends ActionBarActivity {
 
             rssItem.setTitle(articles.get(item).getTitle());
 
-            String[] separated = articles.get(item).getDescription().split(":");
+            String[] separated = articles.get(item).getDescription().split(": ");
             String date = separated[1];
             String description = separated[2];
 
             String[] separatedDate = date.split("\t");
             rssItem.setDate(separatedDate[0]);
 
-            String[] separatedDescription = description.split("\t");
-            rssItem.setDescription(separatedDescription[0]);
+            String[] separatedTopic = description.split("\t");
+            rssItem.setTopic(separatedTopic[0]);
+
+            String[] separatedDescription = articles.get(item).getDescription().split("\t\n");
+            rssItem.setDescription(separatedDescription[2].substring(5));
 
             rssItem.setId(articles.get(item).getId());
             rssItem.setSource(articles.get(item).getSource());
