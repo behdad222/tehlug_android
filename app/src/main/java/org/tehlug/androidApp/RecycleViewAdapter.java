@@ -1,5 +1,7 @@
 package org.tehlug.androidApp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,20 +15,30 @@ import java.util.ArrayList;
  */
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
     private ArrayList<RssItem> rssItems;
+    private Context context;
 
-    public RecycleViewAdapter(ArrayList<RssItem> rssItems) {
+    public RecycleViewAdapter(ArrayList<RssItem> rssItems, Context context) {
         this.rssItems = rssItems;
+        this.context = context;
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView title;
         TextView date;
         TextView body;
+
         public ViewHolder(View v) {
             super(v);
             title = (TextView) itemView.findViewById(R.id.title);
             date = (TextView) itemView.findViewById(R.id.date);
             body = (TextView) itemView.findViewById(R.id.body);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent (context, DescriptionActivity.class);
+            intent.putExtra("id",  getPosition());
+            context.startActivity(intent);
         }
     }
 
@@ -37,6 +49,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.meetings_item, parent, false);
 
+
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
@@ -44,7 +57,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         RssItem rssItem = rssItems.get(position);
-        holder.body.setText(rssItem.getDescription());
+        holder.body.setText(rssItem.getTopic());
         holder.date.setText(rssItem.getDate());
         holder.title.setText(rssItem.getTitle());
     }
