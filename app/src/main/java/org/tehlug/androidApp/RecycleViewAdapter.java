@@ -1,4 +1,4 @@
-package org.tehlug.app;
+package org.tehlug.androidApp;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

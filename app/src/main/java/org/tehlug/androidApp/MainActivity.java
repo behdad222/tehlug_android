@@ -1,4 +1,4 @@
-package org.tehlug.app;
+package org.tehlug.androidApp;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
