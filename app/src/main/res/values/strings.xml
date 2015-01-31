@@ -11,5 +11,9 @@
     <string name="topic">موضوع</string>
     <string name="description">توضیحات</string>
     <string name="domainURL">https://api.import.io</string>
+    <string name="tehlug_mailinglist">general@lists.tehlug.org</string>
+    <string name="send_mail">ارسال ایمیل …</string>
+    <string name="rssURL">http://tehlug.org/rss.php</string>
+    <string name="error">خطا</string>
 
 </resources>

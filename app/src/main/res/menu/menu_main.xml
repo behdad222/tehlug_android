@@ -13,6 +13,7 @@
         android:title="@string/action_place"
         android:icon="@drawable/ic_place_white_24dp"
         app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/action_mail"
         android:title="@string/action_mail"

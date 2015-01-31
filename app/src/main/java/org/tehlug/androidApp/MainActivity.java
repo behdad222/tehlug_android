@@ -1,11 +1,13 @@
 package org.tehlug.androidApp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.pkmmte.pkrss.Article;
 import com.pkmmte.pkrss.Callback;
@@ -34,7 +36,7 @@ public class MainActivity extends ActionBarActivity {
         adapter = new RecycleViewAdapter(rssItems, this);
         meetingRecycleView.setAdapter(adapter);
 
-        PkRSS.with(this).load("http://tehlug.org/rss.php").callback(new Callback() {
+        PkRSS.with(this).load(getString(R.string.rssURL)).callback(new Callback() {
             @Override
             public void OnPreLoad() {
 
@@ -68,6 +70,17 @@ public class MainActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_more) {
+            return true;
+        }
+        else if (id == R.id.action_mail) {
+            Intent i = new Intent(Intent.ACTION_SEND);
+            i.setType("message/rfc822");
+            i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getString(R.string.tehlug_mailinglist)});
+            try {
+                startActivity(Intent.createChooser(i, getString(R.string.send_mail)));
+            } catch (android.content.ActivityNotFoundException ex) {
+                Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
+            }
             return true;
         }
 
