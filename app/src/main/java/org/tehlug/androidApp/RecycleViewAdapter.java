@@ -23,18 +23,19 @@ import java.util.ArrayList;
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
     private ArrayList<RssItem> rssItems;
     private Context context;
-    int x;
-    int y;
-    View myView1;
-    View myView2;
-    long duration;
+    private int centerX;
+    private int centerY;
+    private View grayView1;
+    private View grayView2;
+    private long duration;
 
     public RecycleViewAdapter(ArrayList<RssItem> rssItems, Context context) {
         this.rssItems = rssItems;
         this.context = context;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnTouchListener, View.OnLongClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener, View.OnTouchListener, View.OnLongClickListener {
         TextView topic;
         TextView date;
         TextView title;
@@ -53,12 +54,13 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         @Override
         public void onClick(View view) {
             if (Build.VERSION_CODES.LOLLIPOP<=Build.VERSION.SDK_INT) {
-                if (View.VISIBLE != myView1.getVisibility()) {
-                    myView1.setVisibility(View.VISIBLE);
+                if (View.VISIBLE != grayView1.getVisibility()) {
+                    grayView1.setVisibility(View.VISIBLE);
                     duration = 300;
-                    int finalRadius = Math.max(myView2.getWidth(), myView2.getHeight());
+                    int finalRadius = Math.max(grayView2.getWidth(), grayView2.getHeight());
 
-                    Animator anim = ViewAnimationUtils.createCircularReveal(myView2, x, y, 0, finalRadius).setDuration(duration);
+                    Animator anim = ViewAnimationUtils.createCircularReveal(
+                            grayView2, centerX, centerY, 0, finalRadius).setDuration(duration);
 
                     anim.addListener(new AnimatorListenerAdapter() {
                         @Override
@@ -69,20 +71,19 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                             intent.putExtra("id", getPosition());
                             context.startActivity(intent);
-                            myView2.setVisibility(View.INVISIBLE);
-                            myView1.setVisibility(View.INVISIBLE);
+                            grayView2.setVisibility(View.INVISIBLE);
+                            grayView1.setVisibility(View.INVISIBLE);
                         }
                     });
-                    myView2.setVisibility(View.VISIBLE);
+                    grayView2.setVisibility(View.VISIBLE);
                     anim.start();
                 } else {
                     Intent intent = new Intent(context, DescriptionActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("id", getPosition());
                     context.startActivity(intent);
-                    myView2.setVisibility(View.INVISIBLE);
-                    myView1.setVisibility(View.INVISIBLE);
-
+                    grayView2.setVisibility(View.INVISIBLE);
+                    grayView1.setVisibility(View.INVISIBLE);
                 }
             } else {
                 Intent intent = new Intent(context, DescriptionActivity.class);
@@ -90,22 +91,20 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
                 intent.putExtra("id", getPosition());
                 context.startActivity(intent);
             }
-
         }
-
 
         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         @Override
         public boolean onTouch(View view, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_DOWN){
-                myView1 = view.findViewById(R.id.color);
-                myView2 = view.findViewById(R.id.color2);
-                x = (int) event.getX();
-                y = (int) event.getY();
+                grayView1 = view.findViewById(R.id.color);
+                grayView2 = view.findViewById(R.id.color2);
+                centerX = (int) event.getX();
+                centerY = (int) event.getY();
             }
             else if (event.getAction() == MotionEvent.ACTION_CANCEL ){
-                myView1.setVisibility(View.INVISIBLE);
-                myView2.setVisibility(View.INVISIBLE);
+                grayView1.setVisibility(View.INVISIBLE);
+                grayView2.setVisibility(View.INVISIBLE);
             }
             return false;
         }
@@ -113,11 +112,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         @TargetApi(Build.VERSION_CODES.LOLLIPOP)
         @Override
         public boolean onLongClick(View view) {
-            myView1.setVisibility(View.VISIBLE);
+            grayView1.setVisibility(View.VISIBLE);
             duration = 1500;
-            int finalRadius = Math.max(myView2.getWidth(), myView2.getHeight());
+            int finalRadius = Math.max(grayView2.getWidth(), grayView2.getHeight());
 
-            Animator anim = ViewAnimationUtils.createCircularReveal(myView2, x, y, 0, finalRadius).setDuration(duration);
+            Animator anim = ViewAnimationUtils.createCircularReveal(
+                    grayView2, centerX, centerY, 0, finalRadius).setDuration(duration);
 
             anim.addListener(new AnimatorListenerAdapter() {
                 @Override
@@ -126,19 +126,18 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
                 }
             });
-            myView2.setVisibility(View.VISIBLE);
+            grayView2.setVisibility(View.VISIBLE);
             anim.start();
             return false;
         }
     }
 
     @Override
-    public RecycleViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
+    public RecycleViewAdapter.ViewHolder onCreateViewHolder(
+            ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.meetings_item, parent, false);
-
 
         return new ViewHolder(v);
     }
