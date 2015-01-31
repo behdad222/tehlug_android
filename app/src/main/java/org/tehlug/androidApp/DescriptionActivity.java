@@ -19,7 +19,8 @@ public class DescriptionActivity extends ActionBarActivity {
         id = intent.getIntExtra("id", 0);
 
         RssItem rssItem = MainActivity.rssItems.get(id);
-
+        setTitle(rssItem.getTitle());
+        
         TextView topic;
         TextView date;
         TextView description;
