@@ -11,6 +11,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pkmmte.pkrss.Article;
@@ -21,12 +25,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements Callback,View.OnClickListener {
     private RecyclerView meetingRecycleView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
     public static ArrayList<RssItem> rssItems;
     Activity activity;
+    TextView noNet;
+    Button tryAgain;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +50,24 @@ public class MainActivity extends ActionBarActivity {
         adapter = new RecycleViewAdapter(rssItems, this);
         meetingRecycleView.setAdapter(adapter);
 
-        PkRSS.with(this).load(getString(R.string.rssURL)).callback(new Callback() {
-            @Override
-            public void OnPreLoad() {
+        noNet = (TextView) findViewById(R.id.noNet);
+        tryAgain = (Button) findViewById(R.id.tryAgain);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
-            }
+        tryAgain.setOnClickListener(this);
 
-            @Override
-            public void OnLoaded(List<Article> articles) {
-                dataSet(articles);
-            }
-
-            @Override
-            public void OnLoadFailed() {
-
-            }
-        }).async();
+        if (Util.isOnline(this)){
+            meetingRecycleView.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+            noNet.setVisibility(View.GONE);
+            tryAgain.setVisibility(View.GONE);
+            PkRSS.with(this).load(getString(R.string.rssURL)).callback(this).async();
+        } else {
+            meetingRecycleView.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            noNet.setVisibility(View.VISIBLE);
+            tryAgain.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -148,7 +157,45 @@ public class MainActivity extends ActionBarActivity {
         MainActivity.this.runOnUiThread(new Runnable() {
             public void run() {
                 meetingRecycleView.getAdapter().notifyDataSetChanged();
+
+                meetingRecycleView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
+                noNet.setVisibility(View.GONE);
+                tryAgain.setVisibility(View.GONE);
             }
         });
+    }
+
+    @Override
+    public void OnPreLoad() {
+
+    }
+
+    @Override
+    public void OnLoaded(List<Article> articles) {
+        dataSet(articles);
+    }
+
+    @Override
+    public void OnLoadFailed() {
+        MainActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                meetingRecycleView.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
+                noNet.setVisibility(View.VISIBLE);
+                tryAgain.setVisibility(View.VISIBLE);
+            }
+        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tryAgain) {
+            meetingRecycleView.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+            noNet.setVisibility(View.GONE);
+            tryAgain.setVisibility(View.GONE);
+            PkRSS.with(this).load(getString(R.string.rssURL)).callback(this).async();
+        }
     }
 }
