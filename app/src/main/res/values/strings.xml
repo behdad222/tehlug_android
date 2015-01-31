@@ -16,8 +16,13 @@
     <string name="rssURL">http://tehlug.org/rss.php</string>
     <string name="error">خطا</string>
     <string name="map">نقشه</string>
+    <string name="about_tehlug">تهران‌لاگ</string>
+    <string name="cooperation">همکاری</string>
+    <string name="reports">گزارشات</string>
+    <string name="news">اخبار</string>
+    <string name="others">بقیه</string>
+    <string name="organization">تشکیلات</string>
     <string name="geo">geo: 35.738851, 51.433627</string>
-    <string name="place">آدرس محل برگزاری جلسات: خیابان سهروردی شمالی، خیابان خرمشهر (آپادانا)، خیابان شهید عربعلی (نوبخت)، کوچه نهم، شماره ۱۳</string>
-
+    <string name="place">سهروردی شمالی، خرمشهر (آپادانا)، شهید عربعلی (نوبخت)، کوچه نهم، پلاک ۱۳ - ساعت ۶ تا ۸</string>
 
 </resources>

@@ -3,8 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
     <item
-        android:id="@+id/action_more"
-        android:title="@string/action_more"
+        android:id="@+id/about_tehlug"
+        android:title="@string/about_tehlug"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/cooperation"
+        android:title="@string/cooperation"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/reports"
+        android:title="@string/reports"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/news"
+        android:title="@string/news"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/others"
+        android:title="@string/others"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/organization"
+        android:title="@string/organization"
         android:orderInCategory="100"
         app:showAsAction="never" />
 
