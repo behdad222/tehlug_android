@@ -15,5 +15,9 @@
     <string name="send_mail">ارسال ایمیل …</string>
     <string name="rssURL">http://tehlug.org/rss.php</string>
     <string name="error">خطا</string>
+    <string name="map">نقشه</string>
+    <string name="geo">geo: 35.738851, 51.433627</string>
+    <string name="place">آدرس محل برگزاری جلسات: خیابان سهروردی شمالی، خیابان خرمشهر (آپادانا)، خیابان شهید عربعلی (نوبخت)، کوچه نهم، شماره ۱۳</string>
+
 
 </resources>

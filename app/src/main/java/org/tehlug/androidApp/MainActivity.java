@@ -1,6 +1,10 @@
 package org.tehlug.androidApp;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,15 +19,18 @@ import com.pkmmte.pkrss.PkRSS;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity {
     private RecyclerView meetingRecycleView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
     public static ArrayList<RssItem> rssItems;
+    Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        activity = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -68,22 +75,36 @@ public class MainActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_more) {
-            return true;
-        }
-        else if (id == R.id.action_mail) {
-            Intent i = new Intent(Intent.ACTION_SEND);
-            i.setType("message/rfc822");
-            i.putExtra(Intent.EXTRA_EMAIL  , new String[]{getString(R.string.tehlug_mailinglist)});
-            try {
-                startActivity(Intent.createChooser(i, getString(R.string.send_mail)));
-            } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
-            }
-            return true;
+        switch (id) {
+            case R.id.action_place:
+                new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.action_place))
+                        .setMessage(getString(R.string.place))
+                        .setNeutralButton(getString(R.string.map), new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Uri gmmIntentUri = Uri.parse(getString(R.string.geo)).buildUpon().build();
+                                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                mapIntent.setPackage("com.google.android.apps.maps");
+                                startActivity(mapIntent);
+                            }
+                        })
+                        .setIcon(R.drawable.ic_place_grey600_24dp)
+                        .show();
+                return true;
+
+            case R.id.action_mail:
+                Intent i = new Intent(Intent.ACTION_SEND);
+                i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.tehlug_mailinglist)});
+                try {
+                    startActivity(Intent.createChooser(i, getString(R.string.send_mail)));
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
+                }
+                return true;
         }
 
+        //noinspection SimplifiableIfStatement
         return super.onOptionsItemSelected(item);
     }
 
@@ -117,6 +138,5 @@ public class MainActivity extends ActionBarActivity {
                 meetingRecycleView.getAdapter().notifyDataSetChanged();
             }
         });
-
     }
 }
