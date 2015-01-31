@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/tehlug.iml" filepath="$PROJECT_DIR$/tehlug.iml" />
       <module fileurl="file://$PROJECT_DIR$/tehlug_android.iml" filepath="$PROJECT_DIR$/tehlug_android.iml" />
     </modules>
