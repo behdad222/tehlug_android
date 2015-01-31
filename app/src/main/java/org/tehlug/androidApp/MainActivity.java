@@ -74,6 +74,7 @@ public class MainActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        Intent intent;
 
         switch (id) {
             case R.id.action_place:
@@ -93,18 +94,24 @@ public class MainActivity extends ActionBarActivity {
                 return true;
 
             case R.id.action_mail:
-                Intent i = new Intent(Intent.ACTION_SEND);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.tehlug_mailinglist)});
+                intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("message/rfc822");
+                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.tehlug_mailinglist)});
                 try {
-                    startActivity(Intent.createChooser(i, getString(R.string.send_mail)));
+                    startActivity(Intent.createChooser(intent, getString(R.string.send_mail)));
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
                 }
                 return true;
 
             case R.id.action_about_tehlug:
-                Intent intent = new Intent(activity, AboutTehlugActivity.class);
+                intent = new Intent(activity, AboutTehlugActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(intent);
+                return true;
+
+            case R.id.action_cooperation:
+                intent = new Intent(activity, CooperationActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity.startActivity(intent);
                 return true;
