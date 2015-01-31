@@ -31,7 +31,5 @@ public class DescriptionActivity extends ActionBarActivity {
         topic.setText(rssItem.getTopic());
         date.setText(rssItem.getDate());
         description.setText(rssItem.getDescription() + "\n");
-
-
     }
 }

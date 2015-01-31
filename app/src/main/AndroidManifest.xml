@@ -23,6 +23,11 @@
             android:label="@string/app_name" >
         </activity>
 
+        <activity
+            android:name="org.tehlug.androidApp.AboutTehlugActivity"
+            android:label="@string/action_about_tehlug" >
+        </activity>
+
     </application>
 
 </manifest>
