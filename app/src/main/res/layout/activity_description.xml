@@ -25,6 +25,7 @@
         android:layout_margin="20dp"
         android:text="@string/date"
         android:id="@+id/date"
+        android:textColor="#008a7d"
         android:textSize="15sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

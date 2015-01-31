@@ -48,6 +48,7 @@
         android:text="@string/date"
         android:padding="8dp"
         android:textSize="14sp"
+        android:textColor="#008a7d"
         android:id="@+id/date"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true" />
