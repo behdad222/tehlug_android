@@ -4,66 +4,55 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/color"
-        android:background="#dadada"
-        android:visibility="invisible"
-        android:layout_alignEnd="@+id/title"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignBottom="@+id/topic" />
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/ripple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/color2"
-        android:background="#bfbfbf"
-        android:visibility="invisible"
-        android:layout_alignEnd="@+id/title"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignBottom="@+id/topic" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textSize="16sp"
-        android:paddingTop="8dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="3dp"
-        android:textColor="#000"
-        android:id="@+id/title"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title"
+                android:textSize="16sp"
+                android:paddingTop="8dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="3dp"
+                android:textColor="#000"
+                android:id="@+id/title"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/date"
-        android:padding="8dp"
-        android:textSize="14sp"
-        android:textColor="#008a7d"
-        android:id="@+id/date"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date"
+                android:padding="8dp"
+                android:textSize="14sp"
+                android:textColor="#008a7d"
+                android:id="@+id/date"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/topic"
-        android:textSize="15sp"
-        android:paddingRight="11dp"
-        android:paddingBottom="8dp"
-        android:paddingLeft="8dp"
-        android:id="@+id/topic"
-        android:gravity="right"
-        android:layout_below="@+id/title"
-        android:layout_alignParentRight="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/topic"
+                android:textSize="15sp"
+                android:paddingRight="11dp"
+                android:paddingBottom="8dp"
+                android:paddingLeft="8dp"
+                android:id="@+id/topic"
+                android:gravity="right"
+                android:layout_below="@+id/title"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+    </com.balysv.materialripple.MaterialRippleLayout>
 
 </RelativeLayout>

@@ -20,7 +20,7 @@ public class DescriptionActivity extends ActionBarActivity {
 
         RssItem rssItem = MainActivity.rssItems.get(id);
         setTitle(rssItem.getTitle());
-        
+
         TextView topic;
         TextView date;
         TextView description;
