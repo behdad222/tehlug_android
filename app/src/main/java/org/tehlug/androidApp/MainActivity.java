@@ -23,7 +23,6 @@ import com.pkmmte.pkrss.PkRSS;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends ActionBarActivity implements Callback,View.OnClickListener {
     private RecyclerView meetingRecycleView;
@@ -87,31 +86,39 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
 
         switch (id) {
             case R.id.action_place:
-                new AlertDialog.Builder(this)
-                        .setTitle(getString(R.string.action_place))
-                        .setMessage(getString(R.string.place))
-                        .setNeutralButton(getString(R.string.map), new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Uri gmmIntentUri = Uri.parse(getString(R.string.geo)).buildUpon().build();
-                                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                                mapIntent.setPackage("com.google.android.apps.maps");
-                                startActivity(mapIntent);
-                            }
-                        })
-                        .setIcon(R.drawable.ic_place_grey600_24dp)
-                        .show();
+                    new AlertDialog.Builder(this)
+                            .setTitle(getString(R.string.action_place))
+                            .setMessage(getString(R.string.place))
+                            .setNeutralButton(getString(R.string.map), new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    try {
+                                        Uri gmmIntentUri = Uri.parse(getString(R.string.geo)).buildUpon().build();
+                                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                        mapIntent.setPackage("com.google.android.apps.maps");
+                                        startActivity(mapIntent);
+                                    } catch (Exception e) {
+                                        Toast.makeText(
+                                                getBaseContext(),
+                                                getString(R.string.cant_show_map),
+                                                Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            })
+                            .setIcon(R.drawable.ic_place_grey600_24dp)
+                            .show();
+
                 return true;
 
-            case R.id.action_mail:
-                intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("message/rfc822");
-                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.tehlug_mailinglist)});
-                try {
-                    startActivity(Intent.createChooser(intent, getString(R.string.send_mail)));
-                } catch (android.content.ActivityNotFoundException ex) {
-                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
-                }
-                return true;
+//            case R.id.action_mail:
+//                intent = new Intent(Intent.ACTION_SEND);
+//                intent.setType("message/rfc822");
+//                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.tehlug_mailinglist)});
+//                try {
+//                    startActivity(Intent.createChooser(intent, getString(R.string.send_mail)));
+//                } catch (android.content.ActivityNotFoundException ex) {
+//                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
+//                }
+//                return true;
 
             case R.id.action_about_tehlug:
                 intent = new Intent(activity, AboutTehlugActivity.class);
