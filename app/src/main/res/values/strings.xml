@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">tehlug</string>
+    <string name="app_name">تهران لاگ</string>
     <string name="action_more">اضافات</string>
     <string name="action_place">محل برگزاری</string>
     <string name="action_mail">میلینگ لیست</string>
@@ -27,9 +27,23 @@
     <string name="tryAgain">دوباره</string>
     <string name="cant_show_map">امکان نمایش نقشه نیست</string>
     <string name="geo">geo: 35.738851, 51.433627?q=35.738851, 51.433627(Tehlug)</string>
+    <string name="place">سهروردی شمالی، خرمشهر (آپادانا)، شهید عربعلی (نوبخت)، کوچه نهم، پلاک ۱۳ - ساعت ۶ تا ۸</string>
+
+    <string name="esfahan">اصفهان: <a href="http://www.isfahanlug.org/">http://www.isfahanlug.org</a></string>
+    <string name="karaj">کرج: <a href="http://www.karajlug.org/">http://www.karajlug.org</a></string>
+    <string name="mashhad">مشهد: <a href="http://www.mashhadlug.org/">http://www.mashhadlug.org</a></string>
+    <string name="gilan">گیلان: <a href="http://www.gullug.org/">http://www.gullug.org</a></string>
+    <string name="khuzestan">خوزستان: <a href="http://khuzestanlug.ir/">http://khuzestanlug.ir</a></string>
+    <string name="tabriz">تبریز: <a href="http://tabrix.org/">http://tabrix.org</a></string>
+    <string name="yazd">یزد: <a href="http://yazdlug.org/">http://yazdlug.org</a></string>
+    <string name="zanjan">زنجان: <a href="http://www.zanjanlug.org/">http://www.zanjanlug.org</a></string>
+    <string name="kerman">کرمان: <a href="http://klug.ir/">http://klug.ir</a></string>
+    <string name="bushehr">بوشهر: <a href="http://bulug.ir/">http://bulug.ir</a></string>
+
     <string name="cooperation">
         گروه کاربران لینوکس تهران به شکل یک دوئوکراسی اداره می‌شود. برای همکاری با تیم گردانندگان تهران‌لاگ هیچ پیش شرطی لازم نیست و محدودیتی در این مورد وجود ندارد. می‌توانید از همین امروز عضوی از مجموعه‌ی گردانندگان باشید. کافی است آمادگی این را داشته باشید تا هر دو هفته چند ساعت از وقت خود را به این مجموعه اختصاص دهید. می‌توانید از طریق لیست پستی آمادگی خود را برای همکاری با ما اعلام کنید. لیستی از کارهای نیازمند انجام شدن همواره وجود دارد که می‌توانید مسئولیت انجام بخشی از آنرا بر عهده بگیرید.\n
     </string>
+
     <string name="about_tehlug">
         گروه کاربران گنو/لینوکس تهران یا «تهران‌لاگ» گروهی مستقل از کاربران کامپیوتر علاقه‌مند به گنو/لینوکس ساکن تهران است.\n
 تم محوری جلسات تهران‌لاگ عبارت است از نرم افزار آزاد به صورت عمومی. با این حال، فعالیت‌های متفاوتی از جمله معرفی توزیع‌های آزاد گنو/لینوکسی، معرفی انواع سیستم‌عامل‌های آزاد خانواده‌ی بی‌اس‌دی، نصب آن‌ها، محتوای آموزشی و حتی بحث آزاد در حوزه‌ی تئوریک نرم افزار آزاد نیز به طور همزمان در این اجتماع دنبال می‌شوند. در واقع تهران‌لاگ یک اجتماع از کاربران نرم افزار آزاد است که مایلند دقایقی را در کنار هم سپری کنند.\n
@@ -44,8 +58,6 @@
 اولین جلسه رسمی گروه کاربران لینوکس تهران (که البته در آن زمان هنوز این نام برای گروه انتخاب نشده بود) در تاریخ ۱۳۸۴/۲/۲۸ و با حضور آرش حسامی، علی پوریان، بهنام بهجت مرندی، سید سینا سالک، محمد وزیریان، محسن پهلوان‌زاده، علی رستگار، آرمین رنجبر، نوید عبدی و عباس اسماعیلی صومعه در "هتل هما" برگزار شد.\n
     </string>
 
-
-
-    <string name="place">سهروردی شمالی، خرمشهر (آپادانا)، شهید عربعلی (نوبخت)، کوچه نهم، پلاک ۱۳ - ساعت ۶ تا ۸</string>
-
 </resources>
+
+

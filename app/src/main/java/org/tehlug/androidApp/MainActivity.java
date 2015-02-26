@@ -131,6 +131,12 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity.startActivity(intent);
                 return true;
+
+            case R.id.action_others:
+                intent = new Intent(activity, OthersActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(intent);
+                return true;
         }
         //noinspection SimplifiableIfStatement
         return super.onOptionsItemSelected(item);

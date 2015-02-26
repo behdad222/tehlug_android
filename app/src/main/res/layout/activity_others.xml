@@ -1,0 +1,123 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="right">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/esfahan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/karaj" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/mashhad" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/gilan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/khuzestan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/tabriz" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/yazd" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/zanjan" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/kerman" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/bushehr" />
+
+    </LinearLayout>
+
+</ScrollView>
