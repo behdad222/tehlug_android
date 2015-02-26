@@ -1,0 +1,74 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="right">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/git" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/trello" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/mailingLists"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:gravity="center"
+            android:text="@string/calender" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:textSize="18sp"
+            android:layout_margin="6dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/irc" />
+
+    </LinearLayout>
+
+</ScrollView>

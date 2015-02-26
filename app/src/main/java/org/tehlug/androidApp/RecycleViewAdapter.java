@@ -12,10 +12,6 @@ import com.balysv.materialripple.MaterialRippleLayout;
 
 import java.util.ArrayList;
 
-/*
- * Created by behdad on 1/30/15.
- */
-
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
     private ArrayList<RssItem> rssItems;
     private Context context;

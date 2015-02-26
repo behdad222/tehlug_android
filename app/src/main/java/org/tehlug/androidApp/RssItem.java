@@ -1,9 +1,5 @@
 package org.tehlug.androidApp;
 
-/*
- * Created by behdad on 1/30/15.
- */
-
 import android.net.Uri;
 
 public class RssItem {

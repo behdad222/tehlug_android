@@ -39,6 +39,11 @@
             android:label="@string/action_others" >
         </activity>
 
+        <activity
+            android:name="org.tehlug.androidApp.OrganizationActivity"
+            android:label="@string/action_organization" >
+        </activity>
+
     </application>
 
 </manifest>
