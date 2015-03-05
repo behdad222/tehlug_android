@@ -1,0 +1,39 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/licence"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="6dp"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:layout_centerInParent="true"
+        android:text="@string/licence" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="6dp"
+        android:autoLink="web"
+        android:layout_centerHorizontal="true"
+        android:linksClickable="true"
+        android:layout_above="@id/licence"
+        android:text="@string/behdad_mail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_margin="6dp"
+        android:autoLink="web"
+        android:layout_centerHorizontal="true"
+        android:linksClickable="true"
+        android:layout_below="@id/licence"
+        android:text="@string/git_link"
+        android:gravity="center"/>
+
+</RelativeLayout>

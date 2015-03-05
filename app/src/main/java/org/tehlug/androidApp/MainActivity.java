@@ -55,7 +55,7 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
 
         tryAgain.setOnClickListener(this);
 
-        if (Util.isOnline(this)){
+        if (Util.isOnline(this)) {
             meetingRecycleView.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
             noNet.setVisibility(View.GONE);
@@ -140,6 +140,12 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
 
             case R.id.action_organization:
                 intent = new Intent(activity, OrganizationActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                activity.startActivity(intent);
+                return true;
+
+            case R.id.action_about_us:
+                intent = new Intent(activity, AboutUsActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 activity.startActivity(intent);
                 return true;
