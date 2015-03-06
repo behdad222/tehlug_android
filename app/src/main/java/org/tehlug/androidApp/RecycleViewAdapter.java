@@ -3,6 +3,7 @@ package org.tehlug.androidApp;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,11 @@ import com.balysv.materialripple.MaterialRippleLayout;
 import java.util.ArrayList;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.ViewHolder> {
-    private ArrayList<RssItem> rssItems;
+    private ArrayList<Meeting> meetings;
     private Context context;
 
-    public RecycleViewAdapter(ArrayList<RssItem> rssItems, Context context) {
-        this.rssItems = rssItems;
+    public RecycleViewAdapter(ArrayList<Meeting> meetings, Context context) {
+        this.meetings = meetings;
         this.context = context;
     }
 
@@ -42,7 +43,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         public void onClick(View v) {
             Intent intent = new Intent(context, DescriptionActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            intent.putExtra("id", getPosition());
+            intent.putExtra("id", meetings.get(getPosition()).getId());
             context.startActivity(intent);
         }
     }
@@ -58,14 +59,14 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        RssItem rssItem = rssItems.get(position);
-        holder.topic.setText(rssItem.getTopic());
-        holder.date.setText(rssItem.getDate());
-        holder.title.setText(rssItem.getTitle());
+        Meeting meeting = meetings.get(position);
+        holder.topic.setText(meeting.getTopic());
+        holder.date.setText(meeting.getDate());
+        holder.title.setText(meeting.getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return rssItems.size();
+        return meetings.size();
     }
 }

@@ -1,12 +1,17 @@
 package org.tehlug.androidApp;
 
-import android.net.Uri;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.RealmClass;
 
-public class RssItem {
+@RealmClass
+public class Meeting extends RealmObject {
+
+    @PrimaryKey
+    private int id;
     private String title;
     private String description;
-    private Uri source;
-    private int id;
+    private String source;
     private String date;
     private String topic;
 
@@ -18,7 +23,7 @@ public class RssItem {
         return description;
     }
 
-    public Uri getSource() {
+    public String getSource() {
         return source;
     }
 
@@ -42,7 +47,7 @@ public class RssItem {
         this.description = description;
     }
 
-    public void setSource(Uri source) {
+    public void setSource(String source) {
         this.source = source;
     }
 

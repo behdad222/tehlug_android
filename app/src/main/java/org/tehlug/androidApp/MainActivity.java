@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,15 +25,18 @@ import com.pkmmte.pkrss.PkRSS;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+
 public class MainActivity extends ActionBarActivity implements Callback,View.OnClickListener {
     private RecyclerView meetingRecycleView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
-    public static ArrayList<RssItem> rssItems;
-    Activity activity;
-    TextView noNet;
-    Button tryAgain;
-    ProgressBar progressBar;
+    private Activity activity;
+    private TextView noNet;
+    private Button tryAgain;
+    private ProgressBar progressBar;
+    private Realm realm;
+    private ArrayList<Meeting> meetings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +44,15 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        realm = Realm.getInstance(this);
+        meetings = new ArrayList<>();
+
         meetingRecycleView = (RecyclerView) findViewById(R.id.meeting_recycle_view);
         meetingRecycleView.setHasFixedSize(true);
 
         layoutManager = new LinearLayoutManager(this);
         meetingRecycleView.setLayoutManager(layoutManager);
-        rssItems = new ArrayList<>();
-        adapter = new RecycleViewAdapter(rssItems, this);
+        adapter = new RecycleViewAdapter(meetings, this);
         meetingRecycleView.setAdapter(adapter);
 
         noNet = (TextView) findViewById(R.id.noNet);
@@ -156,27 +162,31 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
 
     void dataSet(List<Article> articles){
         for (int item = 0; item < articles.size(); item++) {
-            RssItem rssItem = new RssItem();
-
-            rssItem.setTitle(articles.get(item).getTitle());
+            final Meeting meeting = new Meeting();
+            meeting.setTitle(articles.get(item).getTitle());
 
             String[] separated = articles.get(item).getDescription().split(": ");
-            String date = separated[1];
-            String description = separated[2];
+            String[] separatedDate = separated[1].split("\t");
+            meeting.setDate(separatedDate[0]);
 
-            String[] separatedDate = date.split("\t");
-            rssItem.setDate(separatedDate[0]);
-
-            String[] separatedTopic = description.split("\t");
-            rssItem.setTopic(separatedTopic[0]);
+            String[] separatedTopic = separated[2].split("\t");
+            meeting.setTopic(separatedTopic[0]);
 
             String[] separatedDescription = articles.get(item).getDescription().split("\t\n");
-            rssItem.setDescription(separatedDescription[2].substring(5));
+            meeting.setDescription(separatedDescription[2].substring(5));
 
-            rssItem.setId(articles.get(item).getId());
-            rssItem.setSource(articles.get(item).getSource());
+            meeting.setId(articles.get(item).getId());
+            meeting.setSource(String.valueOf(articles.get(item).getSource()));
 
-            rssItems.add(rssItem);
+            meetings.add(meeting);
+
+            MainActivity.this.runOnUiThread(new Runnable() {
+                public void run() {
+                    realm.beginTransaction();
+                    realm.copyToRealmOrUpdate(meeting);
+                    realm.commitTransaction();
+                }
+            });
         }
 
         MainActivity.this.runOnUiThread(new Runnable() {
@@ -222,5 +232,11 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
             tryAgain.setVisibility(View.GONE);
             PkRSS.with(this).load(getString(R.string.rssURL)).callback(this).async();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        realm.close();
     }
 }
