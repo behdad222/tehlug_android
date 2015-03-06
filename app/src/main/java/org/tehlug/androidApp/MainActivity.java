@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class MainActivity extends ActionBarActivity implements Callback,View.OnClickListener {
     private RecyclerView meetingRecycleView;
@@ -67,7 +67,8 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
             noNet.setVisibility(View.GONE);
             tryAgain.setVisibility(View.GONE);
             PkRSS.with(this).load(getString(R.string.rssURL)).callback(this).async();
-        } else {
+
+        } else if (!getCash()) {
             meetingRecycleView.setVisibility(View.GONE);
             progressBar.setVisibility(View.GONE);
             noNet.setVisibility(View.VISIBLE);
@@ -191,7 +192,7 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
 
         MainActivity.this.runOnUiThread(new Runnable() {
             public void run() {
-                meetingRecycleView.getAdapter().notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
 
                 meetingRecycleView.setVisibility(View.VISIBLE);
                 progressBar.setVisibility(View.GONE);
@@ -221,6 +222,25 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
                 tryAgain.setVisibility(View.VISIBLE);
             }
         });
+    }
+
+    private boolean getCash() {
+        RealmResults<Meeting> result = realm
+                .where(Meeting.class)
+                .findAll();
+
+        if (result.size() == 0) return false;
+
+        for (int i = 0; i < result.size(); i++)
+            meetings.add(result.get(i));
+
+        adapter.notifyDataSetChanged();
+
+        meetingRecycleView.setVisibility(View.VISIBLE);
+        progressBar.setVisibility(View.GONE);
+        noNet.setVisibility(View.GONE);
+        tryAgain.setVisibility(View.GONE);
+        return true;
     }
 
     @Override
