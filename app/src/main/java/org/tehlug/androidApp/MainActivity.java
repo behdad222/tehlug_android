@@ -17,6 +17,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.pkmmte.pkrss.Article;
 import com.pkmmte.pkrss.Callback;
 import com.pkmmte.pkrss.PkRSS;
@@ -58,6 +61,12 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
         noNet = (TextView) findViewById(R.id.noNet);
         tryAgain = (Button) findViewById(R.id.tryAgain);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        Tracker tracker = ((LugApplication) getApplication()).getTracker(
+                LugApplication.TrackerName.APP_TRACKER);
+
+        tracker.setScreenName(this.getClass().getSimpleName());
+        tracker.send(new HitBuilders.ScreenViewBuilder().build());
 
         tryAgain.setOnClickListener(this);
 
@@ -252,6 +261,18 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
             tryAgain.setVisibility(View.GONE);
             PkRSS.with(this).load(getString(R.string.rssURL)).callback(this).async();
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GoogleAnalytics.getInstance(this).reportActivityStart(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        GoogleAnalytics.getInstance(this).reportActivityStop(this);
     }
 
     @Override
