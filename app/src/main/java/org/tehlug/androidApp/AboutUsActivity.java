@@ -22,7 +22,7 @@ public class AboutUsActivity extends ActionBarActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.licence) {
-            if (count >= 5) {
+            if (count >= 3) {
                 Toast.makeText(
                         getBaseContext(),
                         getString(R.string.about_hidden),

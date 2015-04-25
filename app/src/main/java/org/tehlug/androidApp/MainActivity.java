@@ -125,17 +125,6 @@ public class MainActivity extends ActionBarActivity implements Callback,View.OnC
 
                 return true;
 
-//            case R.id.action_mail:
-//                intent = new Intent(Intent.ACTION_SEND);
-//                intent.setType("message/rfc822");
-//                intent.putExtra(Intent.EXTRA_EMAIL, new String[]{getString(R.string.tehlug_mailinglist)});
-//                try {
-//                    startActivity(Intent.createChooser(intent, getString(R.string.send_mail)));
-//                } catch (android.content.ActivityNotFoundException ex) {
-//                    Toast.makeText(this, getString(R.string.error), Toast.LENGTH_SHORT).show();
-//                }
-//                return true;
-
             case R.id.action_about_tehlug:
                 intent = new Intent(activity, AboutTehlugActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
